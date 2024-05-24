@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B0B95FE-9854-4DFC-959B-EFAAC1C7F575}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPB_Entities</RootNamespace>
+    <AssemblyName>MPB_Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\CheckGroupStatus_TVS_Entities.cs" />
+    <Compile Include="Api\CheckPeopleCount_TVS_Entities.cs" />
+    <Compile Include="Api\Func_Entities.cs" />
+    <Compile Include="Api\InsertTransData_TVS_Entities.cs" />
+    <Compile Include="Api\QueryOrder_Entities.cs" />
+    <Compile Include="Api\QueryRegister.cs" />
+    <Compile Include="Api\QueryRegisterDtl.cs" />
+    <Compile Include="Api\QueryManifest_Entities.cs" />
+    <Compile Include="Api\QueryVessel_Entities.cs" />
+    <Compile Include="Api\RegisterRedeem_Entities.cs" />
+    <Compile Include="Api\SyncOperData_TVS_Entities.cs" />
+    <Compile Include="Api\WriteAPILog_Entities.cs" />
+    <Compile Include="Auth\AuthRole_EditEntities.cs" />
+    <Compile Include="Auth\AuthRole_QueryEntities.cs" />
+    <Compile Include="Auth\AuthRole_SaveEntities.cs" />
+    <Compile Include="Auth\AuthUserRole_SaveEntities.cs" />
+    <Compile Include="Auth\AuthUserRole_EditEntities.cs" />
+    <Compile Include="Auth\AuthRecord_QueryEntities.cs" />
+    <Compile Include="Auth\ChangePwd_SaveEntities.cs" />
+    <Compile Include="Auth\ChangePwd_EditMain.cs" />
+    <Compile Include="Auth\AuthUser_SaveEntities.cs" />
+    <Compile Include="Auth\AuthUser_EditEntities.cs" />
+    <Compile Include="Auth\AuthUser_QueryEntities.cs" />
+    <Compile Include="Auth\AuthLogin_EditEntities.cs" />
+    <Compile Include="COMMON\ResponseModel.cs" />
+    <Compile Include="FCM\FCMSchedule_EditEntities.cs" />
+    <Compile Include="FCM\FCMSchedule_QueryEntities.cs" />
+    <Compile Include="FCM\FCMSchedule_SaveEntities.cs" />
+    <Compile Include="COMMON\AjaxResultEntities.cs" />
+    <Compile Include="COMMON\CodeListEntities.cs" />
+    <Compile Include="COMMON\ImageDirEntities.cs" />
+    <Compile Include="COMMON\ProcessResultEntities.cs" />
+    <Compile Include="COMMON\UserInfo.cs" />
+    <Compile Include="COMMON\UserLogEntities.cs" />
+    <Compile Include="EntitiesBase.cs" />
+    <Compile Include="FCM\NCCRStatistic_QueryEntities.cs" />
+    <Compile Include="FCM\PsgrConfirm_EditEntities.cs" />
+    <Compile Include="FCM\FCMVessel_EditEntities.cs" />
+    <Compile Include="FCM\PsgrManifest_QueryEntities.cs" />
+    <Compile Include="FCM\PsgrUpload_QueryEntities.cs" />
+    <Compile Include="FCM\PsgrConfirm_QueryEntities.cs" />
+    <Compile Include="FCM\FCMVessel_QueryEntities.cs" />
+    <Compile Include="FCM\PsgrConfirm_SaveEntities.cs" />
+    <Compile Include="FCM\FCMVessel_SaveEntities.cs" />
+    <Compile Include="FCM\PsgrRegisterList_QueryEntities.cs" />
+    <Compile Include="Mgmt\MgmtCompany_EditEntities.cs" />
+    <Compile Include="Mgmt\MgmtCompany_QueryEntities.cs" />
+    <Compile Include="Mgmt\MgmtCompany_SaveEntities.cs" />
+    <Compile Include="Mgmt\MgmtRoute_EditEntities.cs" />
+    <Compile Include="Mgmt\MgmtRoute_QueryEntities.cs" />
+    <Compile Include="Mgmt\MgmtRoute_SaveEntities.cs" />
+    <Compile Include="Mgmt\MgmtStation_EditEntities.cs" />
+    <Compile Include="Mgmt\MgmtStation_QueryEntities.cs" />
+    <Compile Include="Mgmt\MgmtStation_SaveEntities.cs" />
+    <Compile Include="Helper\PageList.cs" />
+    <Compile Include="Home\Index.cs" />
+    <Compile Include="Home\Ltree.cs" />
+    <Compile Include="KIOSK\CUDPassenger.cs" />
+    <Compile Include="KIOSK\GetGroupDtlByPreNo.cs" />
+    <Compile Include="KIOSK\KIOSK_CUR.cs" />
+    <Compile Include="KIOSK\KIOSK_Query.cs" />
+    <Compile Include="KIOSK\RequsetModel.cs" />
+    <Compile Include="Ossl\OsslModel.cs" />
+    <Compile Include="Ossl\OsslPersonalTicket.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\SysBulletin_EditEntities.cs" />
+    <Compile Include="Sys\SysBulletin_QueryEntities.cs" />
+    <Compile Include="Sys\SysBulletin_SaveEntities.cs" />
+    <Compile Include="Sys\SysConsRec_EditEntities.cs" />
+    <Compile Include="Sys\SysConsRec_QueryEntities.cs" />
+    <Compile Include="Sys\SysConsRec_SaveEntities.cs" />
+    <Compile Include="Sys\SysMbrMgmt_EditEntities.cs" />
+    <Compile Include="Sys\SysMbrMgmt_QueryEntities.cs" />
+    <Compile Include="Sys\SysMbrMgmt_SaveEntities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MPB_Helper\MPB_Helper.csproj">
+      <Project>{6faa3936-2233-4c36-88b7-ce996bfd47cc}</Project>
+      <Name>MPB_Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

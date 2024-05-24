@@ -1,0 +1,111 @@
+﻿@model MPB_Entities.Auth.AuthRole_EditMain
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>群組權限管理</title>
+    <!-- 3rd part css -->
+    <link href="~/Content/Styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- 3rd part js -->
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
+    <link href="~/Scripts/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />   
+    <script src="~/Scripts/jquery.vs.func.js" type="text/javascript"></script>
+    <!-- main style -->
+    <link href="~/Content/Styles/style.css" rel="stylesheet" />
+    <!-- Chosen Plugin  -->
+    <link href="~/Scripts/chosen-1.8.7/chosen.css?2019062411:46:43" rel="stylesheet" />
+    <script src="~/Scripts/chosen-1.8.7/chosen.jquery.js?2019062411:46:43"></script>
+    <script src="~/Scripts/chosen-1.8.7/chosen.proto.js?2019062411:46:43"></script>    
+    <!-- workcode  -->
+    <script src="~/Scripts/workcode/Auth/AuthRole_Edit.js?2019060311:46:43"></script>
+    <!-- handsontable Plugin  -->
+    <link href="~/Content/hot/handsontable.full.css" rel="stylesheet" />
+    <link href="~/Content/hot/handsontable.full.custom.css" rel="stylesheet" />
+    <script src="~/Scripts/hot/handsontable.full.js?2019062411:46:43"></script>
+    <script src="~/Scripts/jquery.vs.handsontable.js?2019062411:46:43"></script>    
+    <script>
+        var isEditMode      =@ViewBag.isEditMode;
+        var isViewMode      =@ViewBag.isViewMode;
+        var isDeleteMode    =@ViewBag.isDeleteMode;
+        var mode    ='@ViewBag.mode';
+        const tokenVal = '@RequestVerificationTokenHelper.TokenValue()';
+        @Html.Raw((ViewBag.JsScript))
+    </script>
+    <style type="text/css">
+        .htCore tbody tr th {
+            height:34px !important;
+        }
+    </style>
+</head>
+<body style="height:100%" class="noVisibility">
+    @{ Html.BeginForm(); }
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="mode" value="@ViewBag.mode" />
+    <input type="hidden" id="currentUrl" value="@ViewBag.currentUrl" />
+    <input type="hidden" id="mod_key" />
+    <input type="hidden" id="resultGrid1" />
+
+    <h1 class="pageTitle">角色權限管理 - @ViewBag.titleStr</h1>
+    <div class="sub-content">
+        <div class="row">
+            <div style="visibility:hidden">
+                @Html.TextBox("RoleId", @Model.RoleId, new { @class = "vs_initialForm({M:20}) vs_formValidate() form-control", title = "群組代號" })
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label id="Label2" class="control-label">角色名稱</label>
+                    @Html.TextBox("RoleName", @Model.RoleName, new { @class = "vs_initialForm({M:20}) vs_formValidate({NE:1}) form-control", title = "群組名稱" })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label id="Label2" class="control-label">角色類型</label>
+                    <select class="chosen-select " data-placeholder="請選擇..." id="RoleType" name="RoleType" title="角色類型">
+                        @Html.Raw(ViewBag.RoleTypeHtml)
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label id="Label1" class="control-label">狀態</label>
+                    <select class="chosen-select " data-placeholder="請選擇..." id="Status" name="Status" title="狀態">
+                        @Html.Raw(ViewBag.StatusHtml)
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    @Html.DisplayName("CreateDt")@Model.CreateDt　@Html.DisplayName("CreateId")@Model.CreateId　　@Html.DisplayName("ModifyDt")@Model.ModifyDt　@Html.DisplayName("ModifyId")@Model.ModifyId
+                </div>
+            </div>
+        </div>
+        
+        <div id="tbResults_AuthRoleGrid1"></div>
+        
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                <div class="form-group">
+                    <input type="button" id="btnBack" class="btn btn-default btn-lg" value="取　消">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
+                <div class="form-group">
+                    <input type="button" id="btnConfirm" class="btn btn-confirm btn-lg" value="存　檔">
+                </div>
+            </div>
+        </div>
+    </div> <!-- end sub-content -->
+
+    @{Html.EndForm(); }
+</body>
+</html>

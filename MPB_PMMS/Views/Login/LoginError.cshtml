@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>客船乘客名冊管理系統</title>
+</head>
+<body>
+    <form id="form1" method="post">
+
+        @Html.AntiForgeryToken()
+        <h2>登入失敗</h2>
+        <h3>登入次數過多</h3>
+
+        <p>請待15分鐘後重新登入，或是請系統管理員重設密碼!</p>
+    </form>
+</body>
+</html>

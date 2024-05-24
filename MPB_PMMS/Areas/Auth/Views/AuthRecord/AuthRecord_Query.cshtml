@@ -1,0 +1,93 @@
+﻿@{
+    string alertMessage = TempData["AlertMessage"] == null ? null : TempData["AlertMessage"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>操作記錄查詢</title>
+    <!-- 3rd part css -->
+    <link href="~/Content/Styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- 3rd part js -->
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
+    <link href="~/Scripts/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-ui-1.12.1/datepicker-zh-TW.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.vs.func.js" type="text/javascript"></script>
+    <!-- main style -->
+    <link href="~/Content/Styles/style.css" rel="stylesheet" />
+    <!-- Chosen Plugin  -->
+    <link href="~/Scripts/chosen-1.8.7/chosen.css?2019062411:46:43" rel="stylesheet" />
+    <script src="~/Scripts/chosen-1.8.7/chosen.jquery.js?2019062411:46:43"></script>
+    <script src="~/Scripts/chosen-1.8.7/chosen.proto.js?2019062411:46:43"></script>
+    <!-- handsontable Plugin  -->
+    <link href="~/Content/hot/handsontable.full.css" rel="stylesheet" />
+    <link href="~/Content/hot/handsontable.full.custom.css" rel="stylesheet" />
+    <script src="~/Scripts/hot/handsontable.full.js?2019062411:46:43"></script>
+    <script src="~/Scripts/jquery.vs.handsontable.js?2019062411:46:43"></script>
+    <!-- workcode  -->
+    <script src="~/Scripts/workcode/Auth/AuthRecord_Query.js?2020053111:46:43"></script>
+    <script>
+        var queryPage = "AuthRecord_Query";
+        var addPage = "AuthRecord_Edit";
+        var modifyPage = "AuthRecord_Edit";
+        var viewPage = "AuthRecord_Edit";
+        @Html.Raw(ViewBag.JsScript)
+    </script>
+</head>
+<body style="height:100%">
+    @using (Html.BeginForm("Query", "AuthRecord", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="currentUrl" value="1">
+        <input type="hidden" id="mode">
+        <input type="hidden" id="mod_key">
+        <h1 class="pageTitle">操作記錄查詢</h1>
+        <div class="sub-content">
+            <div class="card mb-3 ">
+                <div class="card-header">資料篩選</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label id="Label1" class="control-label">日期-起</label>
+                                @Html.TextBox("LogOn", null, new { @class = "vs_initialForm({M:10}) vs_formValidate({DT1:1, NE:1}) form-control date-picker", title = "日期-起", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label id="Label2" class="control-label">日期-迄</label>
+                                @Html.TextBox("LogOff", null, new { @class = "vs_initialForm({M:10}) vs_formValidate({DT1:1, NE:1}) form-control date-picker", title = "日期-迄", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end panel-body search-area -->
+            </div> <!-- end panel panel-default -->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <input type="button" id="btQuery" name="btnQuery" value="查詢" class="btn btn-confirm btn-lg" />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    @Html.Raw((ViewBag.PageList))
+                </div>
+            </div>
+
+            <div id="tbResultsAuthRecord" name="tbResultsAuthRecord" class="handsontable"></div>
+        </div> <!-- end sub-content -->
+    }
+</body>
+</html>
+
+<script>
+    @if (!string.IsNullOrWhiteSpace(alertMessage))
+    {
+        @:$( document ).ready(function() {alert( "@alertMessage" );});
+    }
+</script>

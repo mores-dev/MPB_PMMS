@@ -1,0 +1,53 @@
+﻿@model MPB_Entities.COMMON.ProcessResult
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Message</title>
+    <script>
+        var SuccessMessage = "完成！";
+        var FailMessage = "失敗！";
+        var ReturnModule = "@Model.ReturnModule";
+        var ReturnPage = "@Model.ReturnPage";
+        var ReturnMessage = "@Model.ReturnMessage";
+        var ReturnId = "@Model.ReturnId";
+
+        var IsLinkPage = false;//開窗呼叫非共用程式
+        var IniFrame = top.iframePage;
+
+        if (ReturnMessage != "") {
+            alert(ReturnMessage);
+        }
+        if (top.iframePage.$('#LinkPage').length > 0) {
+            if (!top.iframePage.$('#LinkPage').hasClass('hidden')) {
+                IsLinkPage = true;
+                IniFrame = top.iframePage.LinkPage;
+            }
+        }
+        if (ReturnId == "0") {
+            IniFrame.$.vs_dialogClose({ dialogMassage: SuccessMessage });
+            if (IsLinkPage) {
+                //IniFrame.parent.$('#LinkPage').dialog("close");
+            } else {
+                if (ReturnPage != "") {
+                    if(ReturnPage=="doSubmitBack"){
+                        IniFrame.doSubmitBack();
+                    }else if(ReturnPage.indexOf("_")>0){
+                        IniFrame.$.vs_toHref({ pageURL: "../" + ReturnModule + "/"  + ReturnPage.substr(0, ReturnPage.indexOf("_")) + "/"+ ReturnPage });
+                    }else{
+                        IniFrame.$.vs_toHref({ pageURL: ReturnPage });
+                    }
+                }
+            }
+        } else {
+            IniFrame.$.vs_dialogClose({ dialogMassage: FailMessage });
+        }
+    </script>
+</head>
+<body>
+    <div>
+    
+    </div>
+</body>
+</html>

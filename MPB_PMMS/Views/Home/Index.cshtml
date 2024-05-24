@@ -1,0 +1,172 @@
+﻿@model MPB_Entities.Home.IndexQueryResult
+@{
+    Layout = null;
+}
+@{
+    string alertMessage = TempData["AlertMessage"] == null ? null : TempData["AlertMessage"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東琉線客船乘客名冊管理系統</title>
+
+    <!-- 3rd part css -->
+    <link href="~/Scripts/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <!-- main style -->
+    <link href="~/Content/Styles/style.css" rel="stylesheet" />
+    <!-- 3rd part js -->
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-5.0.2-dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var sbW = $("#sidebar").attr("class");
+                if (sbW == "toggled") $("#iframePage").width($(window).width());
+                else $("#iframePage").width($(window).width() - $("#sidebar").width());
+                $("#iframePage").height($(window).height() - 54);
+            });
+
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $(".content").toggleClass("toggled");
+
+            });
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#sidebar").toggleClass("toggled");
+                $(window).trigger('resize');
+            });
+            $(window).trigger('resize');
+
+            $("#lnkbtnChgPwd").on("click", function () {
+                $('#iframePage').attr('src', '@Url.Action("AuthChgPwd", "AuthChgPwd", new { area = "Auth" }, Request.Url.Scheme)');
+            });
+            $("#lnkbtnlogout").on("click", function () {
+                location.href = '@Url.Action("Logout", "Login", new { area = "", logout = "1" }, Request.Url.Scheme)';
+                @*location.href = '@Url.Action("Index", "Login", new { area = "", logout = "1" }, Request.Url.Scheme)';*@
+            });
+        });
+        function toHref(str1, str2, str3) {
+            parent.$('#iframePage').attr('src', "../" + str1 + "/" + str2 + "?ProgId=" + str2 + "&Status=" + str3);
+        }
+
+        function treeSpan(str) {
+        }
+        function doubleToggle() {
+            $("#menu-toggle").click();
+            $("#menu-toggle").click();
+        }
+        function logout() {
+            location.href = '@Url.Action("Index", "Login", new { area = "", logout = "1" }, Request.Url.Scheme)';
+        }
+    </script>
+    @*<style type="text/css">
+        html {
+            overflow-x: hidden; /*hide horizotal scroll bar*/
+        }
+        </style>*@
+    <style type="text/css">
+        html {
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        iframe {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <!-- wrap -->
+        <div class="wrap">
+            <!-- header -->
+            <div class="header">
+                <input type="button" class="btn navbar-toggle" id="menu-toggle" type="button" href="#menu-toggle" />
+                <img height="48" class="logo" alt="東琉線客船乘客名冊管理系統" src="~/Content/images/logo.png" />
+                <a class="navbar-title" href="javascript:void(0)">
+                    東琉線客船乘客名冊管理系統
+                </a>
+            </div><!-- // end header -->
+            <!-- sidebar -->
+            <div id="sidebar" >
+                <div class="adminInfo">
+                    <h3><i class="fa fa-info-circle"></i>登入資訊</h3>
+                    @*<span>部門：@Model.LoginUser.DeptName</span>*@
+                    <span>帳號：@Model.LoginUser.LoginUserId</span>
+                    <span>姓名：@Model.LoginUser.LoginUserName</span>
+                    <br/>
+                    <div class="logout">
+                        <a id="lnkbtnlogout" @*href="@Url.Action("Index", "Login", new { area = "", logout = 1 }, Request.Url.Scheme)"*@>
+                            <span><i class="fa fa-power-off"></i></span>登出
+                        </a>
+                    </div>
+                    <div class="chgPwd">
+                        <a id="lnkbtnChgPwd" >
+                            <span><i class="fa fa-lock"></i></span>更改密碼
+                        </a>
+                    </div>
+                </div><!-- end admininfo-->
+
+                <ul class="mainmenu">
+                    @{
+                        int i = 0;
+                        string menuName = "";
+                    }
+                    @foreach (var item in Model.LtreeMenu)
+                    {
+                        if (menuName != item.MenuName)
+                        {
+                            if (i != 0)
+                            {
+                                //上一段的結尾
+                                @:</ul></li>
+                            }
+
+                            @*@:<li class="nav-header"><a href="javascript:treeSpan(0)" data-toggle="collapse" data-target="@('#' + item.MenuId)">
+                            @:<h5>@item.MenuName<i class="fa fa-chevron-right"></i></h5></a><ul class="list-unstyled collapse" id="@item.MenuId">*@
+                            @:<li class="nav-header"><a href="javascript:treeSpan(0)" data-bs-toggle="collapse" data-bs-target="@('#' + item.ProgId)">
+                            @:<h5>@item.MenuName<i class="fa fa-chevron-right"></i></h5></a><ul class="list-unstyled collapse" id="@item.ProgId">
+                        }
+
+                        @:<li><a href="javascript:toHref('@item.MenuId','@item.ProgId','1');"><i class="fa fa-file-text"></i>@item.ProgName</a></li>
+                        menuName = item.MenuName;
+                        i++;
+                    }
+                </ul>
+            </div><!-- // end sidebar -->
+
+            <div class="content">
+                <iframe id="iframePage" name="iframePage" src='@Url.Action("Blank", "Home", new { area = "" }, Request.Url.Scheme)' frameborder="0" style="height:100%">xxxxx</iframe>
+            </div> <!-- end content -->
+
+            <div class="hidden">
+                <iframe id="iframeHide" name="iframeHide" src='@Url.Action("Blank", "Home", new { area = "" }, Request.Url.Scheme)' frameborder="0">xxxxx</iframe>
+            </div>
+
+        </div> <!-- end wrap -->
+
+    }
+</body>
+
+</html>
+
+    <script>
+        @if (!string.IsNullOrWhiteSpace(alertMessage))
+        {
+            @:$(document).ready(function () { alert("@alertMessage"); });
+        }
+    </script>

@@ -1,0 +1,71 @@
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using DataAccessUtility;
+
+namespace MPB_Entities.FCM
+{
+    [System.Web.Mvc.Bind(Exclude = "")]
+    public class FCMSchedule_QueryCondition : QueryBase
+    {
+        //航商序號
+        [DisplayName("航班代號")]
+        public string C_ID { get; set; }
+
+        //航班代號
+        [DisplayName("航班代號")]
+        public string SC_CODE{ get; set; }
+
+        //航班名稱
+        [DisplayName("航班名稱")]
+        public string SC_NAME { get; set; }
+
+        //狀態
+        [DisplayName("狀態")]
+        public string SC_STATUS { get; set; }
+
+        //預估航行時間
+        [DisplayName("預估航行時間(分鐘)")]
+        public string TravelTime { get; set; }
+
+    }
+
+    public class FCMSchedule_QueryResult
+    {
+        [DisplayName("航班代號")]
+        [Column("SC_CODE")]
+        public string SC_CODE { get; set; }
+
+        [DisplayName("航班名稱")]
+        [Column("SC_NAME")]
+        public string SC_NAME { get; set; }
+
+        [DisplayName("狀態")]
+        [Column("SC_STATUS")]
+        public string SC_STATUS { get; set; }
+
+        [DisplayName("套用航線")]
+        [Column("R_NAME")]
+        public string R_NAME { get; set; }
+
+        [DisplayName("航班時間")]
+        [Column("SC_TIME")]
+        public string SC_TIME { get; set; }
+
+        [DisplayName("航班序號")]
+        [Column("SC_ID")]
+        public string SC_ID { get; set; }
+
+        [DisplayName("航商序號")]
+        [Column("C_ID")]
+        public string C_ID { get; set; }
+
+        [DisplayName("航商名稱")]
+        [Column("C_NAME")]
+        public string C_NAME { get; set; }
+
+        [DisplayName("預估航行時間(分鐘)")]
+        [Column("TRAVEL_TIME")]
+        public int TravelTime { get; set; }
+    }
+}

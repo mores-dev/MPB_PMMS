@@ -1,0 +1,63 @@
+﻿@{
+    string alertMessage = TempData["AlertMessage"] == null ? null : TempData["AlertMessage"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>預登系統操作說明</title>
+    <!-- 3rd part css -->
+    <link href="~/Content/Styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- 3rd part js -->
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
+    <link href="~/Scripts/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />   
+    <script src="~/Scripts/jquery.vs.func.js" type="text/javascript"></script>    
+    <!-- main style -->
+    <link href="~/Content/Styles/style.css" rel="stylesheet" />
+    <!-- workcode  -->
+</head>
+<body style="height:100%">
+    @using (Html.BeginForm("Query", "OperManual", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="currentUrl" value="1">
+        <h1 class="pageTitle">預登系統操作說明</h1>
+        <div class="sub-content">
+
+            <div class="row">
+                <h4>1.旅宿業者預登系統-行銷推廣說明會篇</h4>
+                <a href="https://www.youtube.com/watch?v=m7250jBqbH0" style="font-size:large" target="_blank">https://www.youtube.com/watch?v=m7250jBqbH0</a>
+                <hr />
+            </div>
+
+            <div class="row">
+                <h4>2.旅宿業者預登系統-旅行社業者篇</h4>
+                <a href="https://www.youtube.com/watch?v=j_HU8QFIRAE" style="font-size:large"  target="_blank">https://www.youtube.com/watch?v=j_HU8QFIRAE</a>
+                <hr />
+            </div>
+
+            <div class="row">
+                <h4>3.旅宿業者預登系統-民宿業者篇</h4>
+                <a href="https://www.youtube.com/watch?v=oMgcksiGv_4" style="font-size:large"  target="_blank">https://www.youtube.com/watch?v=oMgcksiGv_4</a>
+                <hr />
+            </div>
+
+            <div class="row">
+                <h4>4.旅宿業者預登系統-民宿乘客篇</h4>
+                <a href="https://www.youtube.com/watch?v=E_sigytHbGQ" style="font-size:large"  target="_blank">https://www.youtube.com/watch?v=E_sigytHbGQ</a>
+                <hr />
+            </div>
+        </div> <!-- end sub-content -->
+    }
+</body>
+</html>
+
+<script>
+    @if (!string.IsNullOrWhiteSpace(alertMessage))
+    {
+        @:$( document ).ready(function() {alert( "@alertMessage" );});
+    }
+</script>

@@ -1,0 +1,125 @@
+﻿body
+{
+	background-color: #333333;
+}
+/*---------------------TreeView超連結---------------------*/
+.LinkStyle
+{
+	text-align:left;
+}
+.LinkStyle:link
+{
+	color:Black;
+}
+.LinkStyle:visited
+{
+	color:Black;
+}
+.LinkStyle:hover
+{
+	color:Orange;
+}
+/*---------------------TreeView超連結---------------------*/
+
+/*---------------------版面layout---------------------*/
+#container {
+	width: 800px;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#header
+{
+	background-image: url('images/head_bg.gif');
+	background-repeat: no-repeat;
+	height: 108px;
+	width: 994px;
+	position: relative;
+}
+#wrapper
+{
+	position:relative;
+	width:800px;
+	height: 476px;
+	width: 100%;
+	overflow: hidden;
+	background-image: url('images/login_bg.jpg');
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+#foot {
+	clear: both;
+}
+/*---------------------版面layout/*---------------------*/
+
+
+/*---------------------login方框---------------------*/
+#loginBox {
+	height: 230px;
+	width: 430px;
+	margin-top: 160px;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	/*border: 2px solid #CCC;*/
+}
+
+/*---------------------login方框內抬頭---------------------*/
+#container #wrapper #loginBox #loginTitle h2
+{
+	font-size: 16px;
+	background-image: url('images/logpage_key.gif');
+	background-repeat: no-repeat;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+	width: 85%;
+	padding-top: 4px;
+	padding-bottom: 7px;
+	padding-left: 30px;
+	font-family: "新細明體";
+	font-style: normal;
+	color: #333;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+
+/*---------------------login方框內帳號密碼輸入文字框---------------------*/
+#container #wrapper #loginBox #loginTextbox
+{
+	font-family: "Comic Sans MS" , cursive;
+	font-size: 16px;
+	color: #333333;
+	width: 300px;
+	margin-top: 50px;
+	margin-right: 40px;
+	margin-bottom: 0px;
+	height: auto;
+	margin-left: auto;
+	padding: 0px;
+}
+
+/*---------------------login方框內按鈕---------------------*/
+#container #wrapper #loginBox #loginBTN {
+	width: 300px;
+	margin-right: 40px;
+	margin-bottom: 0px;
+	height: auto;
+	margin-left: auto;
+	padding: 0px;
+	text-align: center;
+}
+
+
+/*---------------------textbox樣式(灰外框)---------------------*/
+.input_textbox
+{
+	border:1px solid #999;
+	padding:4px;
+	/*font-size:14px;*/
+	color:#000000;
+	background-color:#ffffff;
+}

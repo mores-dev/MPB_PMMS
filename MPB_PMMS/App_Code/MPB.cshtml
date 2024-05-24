@@ -1,0 +1,101 @@
+﻿@using MPB_Entities.COMMON
+@functions{
+
+    public static bool Auth(string programId, string programAction = "")
+    {
+        UserInfo user = (UserInfo)HttpContext.Current.Session["UserInfo"];
+        if (user == null) return false;
+
+        if (string.IsNullOrEmpty(programId)) return true;
+
+        var programs = user.UserProgramInfos.Where(x => x.ProgId == programId);
+        if (!string.IsNullOrEmpty(programId) && string.IsNullOrEmpty(programAction))
+            return programs.Any();
+
+        bool result = false;
+        if (!string.IsNullOrEmpty(programId) && !string.IsNullOrEmpty(programAction))
+        {
+            switch (programAction.ToUpper())
+            {
+                case "A": //新增
+                    result = programs.Any(x => x.ProgAdd == "Y");
+                    return result;
+                case "C": //新增
+                    result = programs.Any(x => x.ProgAdd == "Y");
+                    return result;
+                case "D": //刪除
+                    result = programs.Any(x => x.ProgDel == "Y");
+                    return result;
+                case "V": //檢視
+                    result = programs.Any(x => x.ProgView == "Y");
+                    return result;
+                case "M": //修改
+                    result = programs.Any(x => x.ProgMod == "Y");
+                    return result;
+                case "R": //執行
+                    result = programs.Any(x => x.ProgExec == "Y");
+                    return result;
+                //case "O": //
+                //    result = programs.Any(x => x.ProgDo == "Y");
+                //    return result;
+                //case "U": //
+                //    result = programs.Any(x => x.ProgUndo == "Y");
+                //    return result;
+                default:
+                    return false;
+            }
+
+        }
+
+        return false;
+    }
+
+    public static bool isAdmin()
+    {
+        UserInfo user = (UserInfo)HttpContext.Current.Session["UserInfo"];
+        if (user == null) return false;
+
+        return string.IsNullOrEmpty(user.C_ID);
+    }
+
+    public static bool AuthPrint()
+    {
+        string programId = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+        return Auth(programId, "P");
+    }
+
+    public static bool AuthRun()
+    {
+        string programId = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+        return Auth(programId, "R");
+    }
+
+}
+
+@helper ProgTitle()
+{
+    UserInfo user = (UserInfo)HttpContext.Current.Session["UserInfo"];
+    string controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    string title = string.Empty;
+    if (user != null)
+    {
+        var programs = user.UserProgramInfos.Where(x => x.ProgId == controllerName);
+        if (programs.Any())
+        {
+            var program = programs.ToList()[0];
+            title = string.Format("{0}&nbsp;{1}", program.ProgId, program.ProgName);
+        }
+    }
+    @(new HtmlString(title))
+}
+
+
+
+@helper AddBtnAuth()
+{
+    string programId = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    if (Auth(programId, "A"))
+    {
+        @(new HtmlString("<input type='button' id='btnAdd' name='btnAdd' value='新增'>"))
+    }
+}

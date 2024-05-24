@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D4AAEF1-FF51-4420-9813-42B2BA85DF7E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPB_DAL</RootNamespace>
+    <AssemblyName>MPB_DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\CheckGroupStatus_TVS_DAL.cs" />
+    <Compile Include="Api\CheckPeopleCount_TVS_DAL.cs" />
+    <Compile Include="Api\InsertTransData_TVS_DAL.cs" />
+    <Compile Include="Api\QueryOrder_DAL.cs" />
+    <Compile Include="Api\QueryRegister_DAL.cs" />
+    <Compile Include="Api\QueryManifest_DAL.cs" />
+    <Compile Include="Api\QueryVessel_DAL.cs" />
+    <Compile Include="Api\SyncOperData_TVS_DAL.cs" />
+    <Compile Include="Api\WriteAPILog_DAL.cs" />
+    <Compile Include="Auth\AuthRecord_QueryDAL.cs" />
+    <Compile Include="Auth\AuthRole_EditDAL.cs" />
+    <Compile Include="Auth\AuthRole_QueryDAL.cs" />
+    <Compile Include="Auth\AuthRole_SaveDAL.cs" />
+    <Compile Include="Auth\ChangePwd_SaveDAL.cs" />
+    <Compile Include="Auth\AuthUser_SaveDAL.cs" />
+    <Compile Include="Auth\AuthUser_EditDAL.cs" />
+    <Compile Include="Auth\AuthUser_QueryDAL.cs" />
+    <Compile Include="COMMON\VendorDAL.cs" />
+    <Compile Include="FCM\FCMSchedule_EditDAL.cs" />
+    <Compile Include="FCM\FCMSchedule_QueryDAL.cs" />
+    <Compile Include="FCM\FCMSchedule_SaveDAL.cs" />
+    <Compile Include="COMMON\CodeListDAL.cs" />
+    <Compile Include="FCM\NCCRStatistic_QueryDAL.cs" />
+    <Compile Include="FCM\PsgrConfirm_EditDAL.cs" />
+    <Compile Include="FCM\FCMVessel_EditDAL.cs" />
+    <Compile Include="FCM\PsgrManifest_QueryDAL.cs" />
+    <Compile Include="FCM\PsgrUpload_QueryDAL.cs" />
+    <Compile Include="FCM\PsgrConfirm_QueryDAL.cs" />
+    <Compile Include="FCM\FCMVessel_QueryDAL.cs" />
+    <Compile Include="FCM\PsgrConfirm_SaveDAL.cs" />
+    <Compile Include="FCM\FCMVessel_SaveDAL.cs" />
+    <Compile Include="FCM\PsgrRegisterList_QueryDAL.cs" />
+    <Compile Include="KIOSK\KIOSK_CURDAL.cs" />
+    <Compile Include="KIOSK\KIOSK_QueryDAL.cs" />
+    <Compile Include="Mgmt\MgmtCompany_EditDAL.cs" />
+    <Compile Include="Mgmt\MgmtCompany_QueryDAL.cs" />
+    <Compile Include="Mgmt\MgmtCompany_SaveDAL.cs" />
+    <Compile Include="Mgmt\MgmtRoute_EditDAL.cs" />
+    <Compile Include="Mgmt\MgmtRoute_QueryDAL.cs" />
+    <Compile Include="Mgmt\MgmtRoute_SaveDAL.cs" />
+    <Compile Include="Mgmt\MgmtStation_EditDAL.cs" />
+    <Compile Include="Mgmt\MgmtStation_QueryDAL.cs" />
+    <Compile Include="Mgmt\MgmtStation_SaveDAL.cs" />
+    <Compile Include="Home\LtreeDAL.cs" />
+    <Compile Include="Ossl\OsslTicket_DAL.cs" />
+    <Compile Include="Sample.cs" />
+    <Compile Include="Auth\AuthLogin_DAL.cs" />
+    <Compile Include="COMMON\UserLogLogDAL.cs" />
+    <Compile Include="COMMON\UserProgLogDAL.cs" />
+    <Compile Include="DALBase.cs" />
+    <Compile Include="DbManager.cs" />
+    <Compile Include="Home\IndexDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\SysBulletin_EditDAL.cs" />
+    <Compile Include="Sys\SysBulletin_QueryDAL.cs" />
+    <Compile Include="Sys\SysBulletin_SaveDAL.cs" />
+    <Compile Include="Sys\SysConsRec_EditDAL.cs" />
+    <Compile Include="Sys\SysConsRec_QueryDAL.cs" />
+    <Compile Include="Sys\SysConsRec_SaveDAL.cs" />
+    <Compile Include="Sys\SysMbrMgmt_EditDAL.cs" />
+    <Compile Include="Sys\SysMbrMgmt_QueryDAL.cs" />
+    <Compile Include="Sys\SysMbrMgmt_SaveDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MPB_Entities\MPB_Entities.csproj">
+      <Project>{4b0b95fe-9854-4dfc-959b-efaac1c7f575}</Project>
+      <Name>MPB_Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MPB_Helper\MPB_Helper.csproj">
+      <Project>{6faa3936-2233-4c36-88b7-ce996bfd47cc}</Project>
+      <Name>MPB_Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
